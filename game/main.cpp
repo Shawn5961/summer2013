@@ -8,10 +8,17 @@
 #include "timer.hpp"
 #include "timer.cpp"
 
-const int SCREEN_WIDTH		= 1280;
-const int SCREEN_HEIGHT		= 720;
+//Screen attributes
+const int SCREEN_WIDTH		= 1024;
+const int SCREEN_HEIGHT		= 768;
 const int SCREEN_BPP		= 32;
+
+//FPS
 const int FRAMES_PER_SECOND = 60;
+
+//Tile dimensions
+const int TILE_WIDTH		= 32;
+const int TILE_HEIGHT		= 32;
 
 SDL_Surface *screen			= NULL;
 SDL_Surface *background		= NULL;
@@ -20,7 +27,10 @@ SDL_Surface *player			= NULL;
 SDL_Event event;
 
 
-SDL_Rect playerSprite[12];
+SDL_Rect playerSpriteUp[3];
+SDL_Rect playerSpriteDown[3];
+SDL_Rect playerSpriteLeft[3];
+SDL_Rect playerSpriteRight[3];
 
 SDL_Surface *load_image(std::string filename)
 {
@@ -123,6 +133,7 @@ int main(int argc, char** argv)
 	
 	int frame = 0;
 	bool cap = true;
+	int facing = 0;
 	Timer fps;
 	Timer update;
 	
@@ -138,66 +149,70 @@ int main(int argc, char** argv)
 	{
 		return 1;
 	}
+	
+	//UP animation 1
+	playerSpriteUp[0].x = 0;
+	playerSpriteUp[0].y = 0;
+	playerSpriteUp[0].w = TILE_WIDTH;
+	playerSpriteUp[0].h = TILE_HEIGHT;
+	//UP animation 2
+	playerSpriteUp[1].x = TILE_WIDTH;
+	playerSpriteUp[1].y = 0;
+	playerSpriteUp[1].w = TILE_WIDTH;
+	playerSpriteUp[1].h = TILE_HEIGHT;
+	//UP animation 3
+	playerSpriteUp[2].x = TILE_WIDTH * 2;
+	playerSpriteUp[2].y = 0;
+	playerSpriteUp[2].w = TILE_WIDTH;
+	playerSpriteUp[2].h = TILE_HEIGHT;
 
-	playerSprite[0].x = 0;
-	playerSprite[0].y = 0;
-	playerSprite[0].w = 32;
-	playerSprite[0].h = 48;
+	//DOWN animation 1
+	playerSpriteDown[0].x = 0;
+	playerSpriteDown[0].y = TILE_HEIGHT;
+	playerSpriteDown[0].w = TILE_WIDTH;
+	playerSpriteDown[0].h = TILE_HEIGHT;
+	//DOWN animation 2
+	playerSpriteDown[1].x = TILE_WIDTH;
+	playerSpriteDown[1].y = TILE_HEIGHT;
+	playerSpriteDown[1].w = TILE_WIDTH;
+	playerSpriteDown[1].h = TILE_HEIGHT;
+	//DOWN animation 3
+	playerSpriteDown[2].x = TILE_WIDTH * 2;
+	playerSpriteDown[2].y = TILE_HEIGHT;
+	playerSpriteDown[2].w = TILE_WIDTH;
+	playerSpriteDown[2].h = TILE_HEIGHT;
 
-	playerSprite[1].x = 32;
-	playerSprite[1].y = 0;
-	playerSprite[1].w = 32;
-	playerSprite[1].h = 48;
+	//LEFT animation 1
+	playerSpriteLeft[0].x = 0;
+	playerSpriteLeft[0].y = TILE_HEIGHT * 2;
+	playerSpriteLeft[0].w = TILE_WIDTH;
+	playerSpriteLeft[0].h = TILE_HEIGHT;
+	//LEFT animation 2
+	playerSpriteLeft[1].x = TILE_WIDTH;
+	playerSpriteLeft[1].y = TILE_HEIGHT * 2;
+	playerSpriteLeft[1].w = TILE_WIDTH;
+	playerSpriteLeft[1].h = TILE_HEIGHT;
+	//LEFT animation 3
+	playerSpriteLeft[2].x = TILE_WIDTH;
+	playerSpriteLeft[2].y = TILE_HEIGHT * 2;
+	playerSpriteLeft[2].w = TILE_WIDTH;
+	playerSpriteLeft[2].h = TILE_HEIGHT;
 
-	playerSprite[2].x = 64;
-	playerSprite[2].y = 0;
-	playerSprite[2].w = 32;
-	playerSprite[2].h = 48;
-
-	playerSprite[3].x = 0;
-	playerSprite[3].y = 48;
-	playerSprite[3].w = 32;
-	playerSprite[3].h = 48;
-
-	playerSprite[4].x = 32;
-	playerSprite[4].y = 48;
-	playerSprite[4].w = 32;
-	playerSprite[4].h = 48;
-
-	playerSprite[5].x = 64;
-	playerSprite[5].y = 48;
-	playerSprite[5].w = 32;
-	playerSprite[5].h = 48;
-
-	playerSprite[6].x = 0;
-	playerSprite[6].y = 96;
-	playerSprite[6].w = 32;
-	playerSprite[6].h = 48;
-
-	playerSprite[7].x = 32;
-	playerSprite[7].y = 96;
-	playerSprite[7].w = 32;
-	playerSprite[7].h = 48;
-
-	playerSprite[8].x = 64;
-	playerSprite[8].y = 96;
-	playerSprite[8].w = 32;
-	playerSprite[8].h = 48;
-
-	playerSprite[9].x = 0;
-	playerSprite[9].y = 144;
-	playerSprite[9].w = 32;
-	playerSprite[9].h = 48;
-
-	playerSprite[10].x = 32;
-	playerSprite[10].y = 144;
-	playerSprite[10].w = 32;
-	playerSprite[10].h = 48;
-
-	playerSprite[11].x = 64;
-	playerSprite[11].y = 144;
-	playerSprite[11].w = 32;
-	playerSprite[11].h = 48;
+	//RIGHT animation 1
+	playerSpriteRight[0].x = 0;
+	playerSpriteRight[0].y = TILE_HEIGHT * 3;
+	playerSpriteRight[0].w = TILE_WIDTH;
+	playerSpriteRight[0].h = TILE_HEIGHT;
+	//RIGHT animation 2
+	playerSpriteRight[1].x = TILE_WIDTH;
+	playerSpriteRight[1].y = TILE_HEIGHT * 3;
+	playerSpriteRight[1].w = TILE_WIDTH;
+	playerSpriteRight[1].h = TILE_HEIGHT;
+	//RIGHT animation 3
+	playerSpriteRight[2].x = TILE_WIDTH * 2;
+	playerSpriteRight[2].y = TILE_HEIGHT * 3;
+	playerSpriteRight[2].w = TILE_WIDTH;
+	playerSpriteRight[2].h = TILE_HEIGHT;
 	
 	update.start();
 
@@ -211,40 +226,43 @@ int main(int argc, char** argv)
 				switch(event.key.keysym.sym)
 				{
 					case SDLK_UP:
-						y = y - 48;
-						if(f == 0 || f == 1)
-						{
-							f++;
-						}
-						else
-						{
+						y = y - 32;
+						if(facing != 0)
+							facing = 0;
+						if(f == 2)
 							f = 0;
-						}
-						printf("debug");
+						else
+							f++;
 						break;
 
 					case SDLK_DOWN:
-						y = y + 48;
-						if(f == 3 || f == 4)
-							f++;
+						y = y + 32;
+						if(facing != 1)
+							facing = 1;
+						if(f == 2)
+							f = 0;
 						else
-							f = 3;
+							f++;
 						break;
 
 					case SDLK_LEFT:
 						x = x - 32;
-						if(f == 6 || f == 7)
-							f++;
+						if(facing != 2)
+							facing = 2;
+						if(f == 2)
+							f = 0;
 						else
-							f = 6;
+							f++;
 						break;
 
 					case SDLK_RIGHT:
 						x = x + 32;
-						if(f == 9 || f == 10)
-							f++;
+						if(facing != 3)
+							facing = 3;
+						if(f == 2)
+							f = 0;
 						else
-							f = 9;
+							f++;
 						break;
 						
 					case SDLK_RETURN:
@@ -263,13 +281,11 @@ int main(int argc, char** argv)
 
 		apply_surface(0, 0, background, screen);
 		
-
-
 		if(y < 0)
 			y = 0;
 
 		if(y >= SCREEN_HEIGHT)
-			y = SCREEN_HEIGHT - 48;
+			y = SCREEN_HEIGHT - 32;
 
 		if(x < 0)
 			x = 0;
@@ -277,8 +293,25 @@ int main(int argc, char** argv)
 		if(x >= SCREEN_WIDTH)
 			x = SCREEN_WIDTH - 32;
 
-		apply_surface(x, y, player, screen, &playerSprite[f]);
+		switch(facing)
+		{
+			case 0:
+				apply_surface(x, y, player, screen, &playerSpriteUp[f]);
+				break;
 		
+			case 1:
+				apply_surface(x, y, player, screen, &playerSpriteDown[f]);
+				break;
+
+			case 2:
+				apply_surface(x, y, player, screen, &playerSpriteLeft[f]);
+				break;
+
+			case 3:
+				apply_surface(x, y, player, screen, &playerSpriteRight[f]);
+				break;
+		}
+
 		if(SDL_Flip(screen) == -1)
 		{
 			return 1;
