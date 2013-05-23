@@ -65,6 +65,7 @@ void MainMenuState::init()
 	cursor		= load_image("images/mainmenu/cursor.png");
 	options 	= load_image("images/mainmenu/options.png");
 	title	 	= load_image("images/mainmenu/title.png");
+
 	cursorY = 600;
 
 	printf("MainMenuState init\n");
@@ -140,12 +141,18 @@ void MainMenuState::update(GameEngine* game)
 
 void MainMenuState::draw(GameEngine* game)
 {
-	SDL_FillRect(game->screen, NULL, 0x521122);
+	//For debug purposes
+//	SDL_FillRect(game->screen, NULL, 0x521122);
+
 	apply_surface(0, 0, bg, game->screen, NULL);
 	apply_surface(312, 100, title, game->screen, NULL);
 	apply_surface(412, 600, options, game->screen, NULL);
 	apply_surface(362, cursorY, cursor, game->screen, NULL);
+
+	//For debug purposes
 //	SDL_FillRect(game->screen, NULL, 0x521122);
-	SDL_UpdateRect(game->screen, 0, 0, 0, 0);
+
+	//SDL_UpdateRect(game->screen, 0, 0, 0, 0);
+	SDL_Flip(game->screen);
 }
 
