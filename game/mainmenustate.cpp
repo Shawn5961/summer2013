@@ -56,11 +56,15 @@ MainMenuState MainMenuState::game_MainMenuState;
 
 void MainMenuState::init()
 {
-	SDL_Surface* bg 		= load_image("images/mainmenu/bg.png");
-	SDL_Surface* cursor		= load_image("images/mainmenu/cursor.png");
-	SDL_Surface* options 	= load_image("images/mainmenu/options.png");
-	SDL_Surface* title	 	= load_image("images/mainmenu/title.png");
+	SDL_Surface* bg 		= NULL;
+	SDL_Surface* cursor		= NULL;
+	SDL_Surface* options 	= NULL;
+	SDL_Surface* title	 	= NULL;
 
+	bg 			= load_image("images/mainmenu/bg.png");
+	cursor		= load_image("images/mainmenu/cursor.png");
+	options 	= load_image("images/mainmenu/options.png");
+	title	 	= load_image("images/mainmenu/title.png");
 	cursorY = 600;
 
 	printf("MainMenuState init\n");
@@ -136,11 +140,12 @@ void MainMenuState::update(GameEngine* game)
 
 void MainMenuState::draw(GameEngine* game)
 {
-	apply_surface(0, 0, bg, game->screen);
-	apply_surface(312, 100, title, game->screen);
-	apply_surface(412, 600, options, game->screen);
-	apply_surface(362, cursorY, cursor, game->screen);
-
+	SDL_FillRect(game->screen, NULL, 0x521122);
+	apply_surface(0, 0, bg, game->screen, NULL);
+	apply_surface(312, 100, title, game->screen, NULL);
+	apply_surface(412, 600, options, game->screen, NULL);
+	apply_surface(362, cursorY, cursor, game->screen, NULL);
+//	SDL_FillRect(game->screen, NULL, 0x521122);
 	SDL_UpdateRect(game->screen, 0, 0, 0, 0);
 }
 

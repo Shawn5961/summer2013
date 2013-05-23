@@ -8,7 +8,7 @@ OPTS =
 DEBUG = 
 OBJ = test.o mainmenustate.o gameengine.o
 LIBRARIES = 
-BIN = test  
+BIN = test.exe  
 
 default: test
 
@@ -17,8 +17,9 @@ debug: DEBUG = debug
 debug: $(BIN)
 
 test: $(COMPONENTS) $(LIBRARIES) $(OBJ)
-	@echo "*****************************************************"
-	@echo "*** Building $(BIN)"
-	@echo "*****************************************************"
+	@echo "* Building $(BIN) *"
 	$(CXX) $(CFLAGS) -o $(BIN) $(OBJ) $(LIBS)
 	@echo
+	
+clean:
+	rm -f *.o $(BIN) core
