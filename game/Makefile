@@ -2,13 +2,13 @@
 SHELL=C:/Windows/System32/cmd.exe
 CXX = g++ $(CFLAGS) $(OPTS) $(INC)
 INC = -I include/
-CFLAGS = -g 
+CFLAGS = -g -static-libgcc -static-libstdc++
 LIBS = -lmingw32 -lSDLmain -lSDL -lSDL_image
 OPTS =
 DEBUG = 
-OBJ = test.o functions.o mainmenustate.o worldmapstate.o gameengine.o
+OBJ = main.o functions.o mainmenustate.o worldmapstate.o gameengine.o
 LIBRARIES = 
-BIN = test.exe  
+BIN = game.exe  
 
 default: test
 
