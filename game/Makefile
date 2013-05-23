@@ -6,7 +6,7 @@ CFLAGS = -g
 LIBS = -lmingw32 -lSDLmain -lSDL -lSDL_image
 OPTS =
 DEBUG = 
-OBJ = test.o mainmenustate.o gameengine.o
+OBJ = test.o functions.o mainmenustate.o worldmapstate.o gameengine.o
 LIBRARIES = 
 BIN = test.exe  
 

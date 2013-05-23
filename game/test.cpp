@@ -1,5 +1,10 @@
+#include <string>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <sstream>
 #include "gameengine.hpp"
 #include "mainmenustate.hpp"
+#include "functions.hpp"
 
 int main(int argc, char *argv[])
 {

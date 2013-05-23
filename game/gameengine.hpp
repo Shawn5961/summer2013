@@ -10,6 +10,7 @@ class GameState;
 class GameEngine
 {
 	public:
+		
 		void init(const char* title, int width=1024, int height=768, int bpp=0, bool fullscreen=false);
 		void cleanup();
 
