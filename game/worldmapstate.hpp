@@ -6,6 +6,7 @@
 
 class WorldMapState : public GameState
 {
+
 	public:
 		void init();
 		void cleanup();
@@ -32,6 +33,7 @@ class WorldMapState : public GameState
 	private:
 		static WorldMapState game_WorldMapState;
 
+
 		int mapGrid[32][24];
 		bool checkPass(int x, int y);
 		bool passable;
@@ -45,5 +47,6 @@ class WorldMapState : public GameState
 		SDL_Surface* map;
 		SDL_Surface* player;
 };
+
 
 #endif

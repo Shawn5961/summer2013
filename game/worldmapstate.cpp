@@ -117,7 +117,7 @@ void WorldMapState::init()
 	playerSpriteRight[2].y = tilesize * 3;
 	playerSpriteRight[2].w = tilesize;
 	playerSpriteRight[2].h = tilesize;
-
+/*
 	for( int yCoord = 0; yCoord < 24; yCoord++ )
 	{
 		for( int xCoord = 0; xCoord < 32; xCoord++ )
@@ -149,7 +149,44 @@ void WorldMapState::init()
 			}
 		}
 	}
+*/
 
+	int mapData[768] = {
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 4, 4,
+		3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+		3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+		3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+		3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4,
+		3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4,
+		3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4,
+		3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4,
+		3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4,
+		3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+	};
+
+	int i = 0;
+	for( int yCoord = 0; yCoord < 24; yCoord++ )
+	{
+		for( int xCoord = 0; xCoord < 32; xCoord++)
+		{
+			mapGrid[xCoord][yCoord] = mapData[i];
+			i++;
+		}
+	}
 
 
 	printf("WorldMapState init\n");
@@ -157,7 +194,7 @@ void WorldMapState::init()
 
 bool WorldMapState::checkPass(int x, int y)
 {
-	if( mapGrid[x][y] == 2 || mapGrid[x][y] == 3 )
+	if( mapGrid[x][y] == 3 || mapGrid[x][y] == 4 )
 		passable = false;
 	else
 		passable = true;
@@ -199,7 +236,7 @@ void WorldMapState::handleEvents(GameEngine* game)
 				switch (event.key.keysym.sym)
 				{
 					case SDLK_UP:
-						if( (mapGrid[playerX / 32][(playerY - 32) / 32] == 0) || (mapGrid[playerX / 32][(playerY - 32) / 32] == 1) || (mapGrid[playerX / 32][(playerY - 32) / 32] == 4) )
+						if( (checkPass((playerX / 32), ((playerY - 32) / 32))) == true)
 							playerY -= 32;
 						playerDirection = 0;
 						if( (playerFrame == 0) || (playerFrame == 1) )
@@ -209,7 +246,7 @@ void WorldMapState::handleEvents(GameEngine* game)
 						break;
 
 					case SDLK_DOWN:
-						if( (mapGrid[playerX / 32][(playerY + 32) / 32] == 0) || (mapGrid[playerX / 32][(playerY + 32) / 32] == 1) || (mapGrid[playerX / 32][(playerY + 32) / 32] == 4) )
+						if( (checkPass((playerX / 32), ((playerY + 32) / 32))) == true)
 							playerY += 32;
 						playerDirection = 1;
 						if( (playerFrame == 0) || (playerFrame == 1) )
@@ -219,7 +256,7 @@ void WorldMapState::handleEvents(GameEngine* game)
 						break;
 
 					case SDLK_LEFT:
-						if( (mapGrid[(playerX - 32) / 32][playerY / 32] == 0) || (mapGrid[(playerX - 32) / 32][playerY / 32] == 1) || (mapGrid[(playerX - 32) / 32][playerY / 32] == 4) )
+						if( (checkPass(((playerX - 32) / 32), (playerY / 32))) == true)
 							playerX -= 32;
 						playerDirection = 2;
 						if( (playerFrame == 0) || (playerFrame == 1) )
@@ -229,7 +266,7 @@ void WorldMapState::handleEvents(GameEngine* game)
 						break;
 
 					case SDLK_RIGHT:
-						if( (mapGrid[(playerX + 32) / 32][playerY / 32] == 0) || (mapGrid[(playerX + 32) / 32][playerY / 32] == 1) || (mapGrid[(playerX + 32) / 32][playerY / 32] == 4) )
+						if( (checkPass(((playerX + 32) / 32), (playerY / 32))) == true)
 							playerX += 32;
 						playerDirection = 3;
 						if( (playerFrame == 0) || (playerFrame == 1) )
@@ -253,15 +290,15 @@ void WorldMapState::draw(GameEngine* game)
 	{
 		for( int xCoord = 0; xCoord < 32; xCoord++ )
 		{
-			if( mapGrid[xCoord][yCoord] == 0 )
+			if( mapGrid[xCoord][yCoord] == 1 )
 				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[0]);
-			else if( mapGrid[xCoord][yCoord] == 1 )
-				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[1]);
 			else if( mapGrid[xCoord][yCoord] == 2 )
-				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[2]);
+				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[1]);
 			else if( mapGrid[xCoord][yCoord] == 3 )
-				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[3]);
+				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[2]);
 			else if( mapGrid[xCoord][yCoord] == 4 )
+				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[3]);
+			else if( mapGrid[xCoord][yCoord] == 5 )
 				apply_surface(xCoord * 32, yCoord * 32, map, game->screen, &mapTile[4]);
 		}
 	}
