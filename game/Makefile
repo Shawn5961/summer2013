@@ -8,7 +8,7 @@ DEBUG =
 OBJ = main.o functions.o mainmenustate.o worldmapstate.o gameengine.o
 LIBRARIES = 
 
-ifeq ($(shell uname), Linux)
+ifeq "$(ARCH)" "Linux"
 	BIN = game
 	LIBS = -lSDLmain -lSDL -lSDL_image
 else
